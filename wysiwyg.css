@@ -1,0 +1,16 @@
+img {
+  width: 35%;
+  display:  block;
+}
+
+/*body {
+  background-color: slategray;
+}*/
+
+div:nth-child(2n) {
+  background-color: lightyellow;
+}
+
+div:nth-child(2n+1) {
+  background-color: lightblue;
+}
