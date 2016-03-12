@@ -6,11 +6,23 @@ img {
 /*body {
   background-color: slategray;
 }*/
+.card {
+  margin:5px;
+  display: inline-block;
+}
 
-div:nth-child(2n) {
+.card:nth-of-type(odd) {
   background-color: lightyellow;
 }
 
-div:nth-child(2n+1) {
+.card:nth-of-type(even) {
   background-color: lightblue;
 }
+
+.selected {
+  border: 3px black dotted;
+}
+
+
+
+

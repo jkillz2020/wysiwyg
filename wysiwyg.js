@@ -1,6 +1,9 @@
 // Create an array of objects that represents famous people (see structure below).
-var output = document.getElementById("pirates");
-var people = [{
+"use strict";
+let output = document.getElementById("pirates");
+let card = document.getElementsByClassName("card");
+let bio = document.getElementsByClassName("bio");
+let people = [{
   title:  "Captain",
   name:  "William Kidd",
   bio: "A stylish Scotsman who had been a leading citizen of New York City, actively involved in the building of Trinity Church, Captain Kidd began his career as a privateer, originally commissioned to rid the seas of pirates. Only reluctantly, did he cross bounds into piracy (having been elected pirate captain by his crew), although his piracy itself may be questionable as his exploits may have been sensationalized. His greatest misfortune was attacking an East India Company vessel. When he learned that he was hunted for that deed, he buried some of his treasure on Gardiners Island, anticipating its usefulness as a bargaining tool. But, captured in Boston along with his wife, William Kidd was eventually sent to England for trial. He was sentenced to death, some said unjustly, and suffered a wretched execution - the noose by which he was hung broke twice, and after he was killed on the third hanging his body was doused in tar and hung by chains along the Thames River. ",
@@ -63,12 +66,48 @@ var people = [{
 // Create a text input in your DOM.
 // Beneath that, create a container, block element in your DOM.
 // Create a DOM element for each of the objects inside the container. Style your person elements however you like.
-for (var i = 0; i < people.length; i++) {
-  people[i]
-  
-  
-  var out = `<person><header>${people[i].title} ${people[i].name}</header><section>${people[i].bio} <img src='${people[i].image}'</section><footer>${people[i].lifespan.birth} ${people[i].lifespan.death}</footer></person>`
-      output.innerHTML += "<br>" + out};
+function populateDom(){
+for (let i = 0; i < people.length; i++) {
+  let person = people[i];
+  buildCard(person); 
+  }
+
+addClickEvent();
+}
+
+function removeSelected(){
+  for(let i = 0; i < card.length; i++){
+    card[i].classList.remove("selected")
+  }
+}
+
+function keyEvent(currCard, currBio){
+  userinput.addEventListener("keyup", function(event){
+    currBio.innerHTML = userinput.value;
+  })
+}
+
+function buildCard(person){
+  output.innerHTML += `<person class="card"><header>${person.title} ${person.name}</header><section><p class="bio">${person.bio} </p><img src='${person.image}'</section><footer>${person.lifespan.birth} - ${person.lifespan.death}</footer></person>`
+      //output.innerHTML += "<br>" + out
+};
+
+function addClickEvent(currCard){
+  for (let i = 0; i < card.length; i++){
+    let currCard = card[i];
+    let currBio = bio[i];
+    currCard.addEventListener("click", function(){
+      removeSelected();
+      userinput.focus();
+      currCard.classList.add("selected");
+      keyEvent(currCard, currBio);
+      
+  })
+
+  }
+}
+
+populateDom();
     
 // For every even numbered element, have a light yellow background.
 
@@ -78,13 +117,22 @@ for (var i = 0; i < people.length; i++) {
 // Each element's DOM structure should be as shown below.
 // When you click on one of the person elements, a dotted border should appear around it.
 // 
+// function buildBorder(event){
+//   person.style.border="2px dotted black"
+  
+// };
+// person.addEventListener("click", buildBorder)
 // When you click on one of the person elements, the text input should immediately gain focus so that you can start typing.
 // 
+// function gainFocus(event){
+//   getElementById("userinput").focus
+// };
+// userinput.addEventListener("click")
 // When there is a highlighted person element, and you begin typing in the input box, the person's biography should be immediately bound to what you are typing, letter by letter.
 // 
 // When you press the enter/return key when typing in the input field, then the content of the input field should immediately be blank.
 // 
-// 
+//userinput.addEventListener(keypress)
 // Person element structure
 
 // <!-- person element? what??? -->
