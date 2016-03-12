@@ -74,16 +74,24 @@ for (let i = 0; i < people.length; i++) {
 
 addClickEvent();
 }
-
+//function to remove the selected class so that it will remove and tell program 
 function removeSelected(){
   for(let i = 0; i < card.length; i++){
     card[i].classList.remove("selected")
   }
 }
-
+//if statements are nested bc we only want the newBio text inserted if the person element is selected.  if person hits enter then it clears text input but keeps text in the bio section.
 function keyEvent(currCard, currBio){
   userinput.addEventListener("keyup", function(event){
-    currBio.innerHTML = userinput.value;
+    if (currCard.classList.contains("selected")) {
+      let newBio = event.currentTarget.value;
+    currBio.innerHTML = newBio;
+  
+      if (event.keyCode === 13){
+        currBio.innerHTML = newBio;
+        userinput.value = "";
+        }
+      }
   })
 }
 
@@ -98,6 +106,7 @@ function addClickEvent(currCard){
     let currBio = bio[i];
     currCard.addEventListener("click", function(){
       removeSelected();
+      userinput.value = "";
       userinput.focus();
       currCard.classList.add("selected");
       keyEvent(currCard, currBio);
@@ -105,6 +114,10 @@ function addClickEvent(currCard){
   })
 
   }
+// function deleteInput(keypress){
+//   userinput 
+// }
+// userinput.addEventListener(keypress)
 }
 
 populateDom();
@@ -117,22 +130,18 @@ populateDom();
 // Each element's DOM structure should be as shown below.
 // When you click on one of the person elements, a dotted border should appear around it.
 // 
-// function buildBorder(event){
-//   person.style.border="2px dotted black"
+
   
-// };
-// person.addEventListener("click", buildBorder)
+
 // When you click on one of the person elements, the text input should immediately gain focus so that you can start typing.
 // 
-// function gainFocus(event){
-//   getElementById("userinput").focus
-// };
-// userinput.addEventListener("click")
+
 // When there is a highlighted person element, and you begin typing in the input box, the person's biography should be immediately bound to what you are typing, letter by letter.
 // 
 // When you press the enter/return key when typing in the input field, then the content of the input field should immediately be blank.
 // 
-//userinput.addEventListener(keypress)
+
+
 // Person element structure
 
 // <!-- person element? what??? -->
